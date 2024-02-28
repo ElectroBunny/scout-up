@@ -83,9 +83,13 @@
                   headers: {
                   'Content-Type': 'application/json'
                   }
+                
                 }).catch(function(error) {
                 console.error('Error:', error);
-                }); 
+                }).finally(function() {
+                        console.log('Success');
+                        deleteText();
+                });
         }
 
         function onScanFailure(error) {
