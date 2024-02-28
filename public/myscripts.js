@@ -61,7 +61,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
   // Send the request asynchronously
   // the body should be an json with key value pairs
   console.log(event.target.action);
-  fetch(event.target.action, {
+  fetch("https://courageous-cyan-robe.cyclic.app/", {
     method: 'POST',
     body: JSON.stringify(formFields),
     headers: {
@@ -334,7 +334,7 @@ function getCurrentTeamNumberFromRobot() {
 
 function getCurrentMatchKey() {
   console.log("getCurrentMatchKey")
-  return "2023week0" + "_" + "qm" + matchInput.value;
+  return "2024isde2" + "_" + "qm" + matchInput.value;
 }
 
 function getCurrentMatch() {
@@ -358,8 +358,8 @@ function getMatch(matchKey) {
 }
 
 window.onload = function () {
-  getTeams("2023week0");
-  getSchedule("2023week0");
+  getTeams("2024isde2");
+  getSchedule("2024isde2");
   AbsentCheckHidden.value = AbsentCheck.checked ? 'TRUE' : 'FALSE';
   LeftWingCheckHidden.value = LeftWingCheck.checked ? 'TRUE' : 'FALSE';
   DroppedNotesCheckHidden.value = DroppedNotesCheck.checked ? 'TRUE' : 'FALSE';
