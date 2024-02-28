@@ -53,10 +53,10 @@
                 //get the text in the "text" paragraph
                 var text = document.getElementById("text").textContent;
                 // append the the "text" paragraph and set the innerHTML to the decoded message
-                document.getElementById("text").innerHTML = text + qrCodeMessage;
+                document.getElementById("text").value = text + qrCodeMessage;
         }
         function deleteText() {
-                document.getElementById("text").innerHTML = "";
+                document.getElementById("text").value = "";
         }
         function onScanSuccess(qrCodeMessage) {
                 // handle on success condition with the decoded message
