@@ -1,0 +1,131 @@
+:root {
+    --my-blue: #1A4895;
+    --my-blue-dark: #08152b;
+    --my-blue-light: #4a80de;
+
+    --my-red: #951a1a;
+    --my-red-dark: #541212;
+    --my-red-light: #b52a2a;
+}
+
+.blue-style {
+    background-color: var(--my-blue);
+}
+.red-style {
+    background-color: var(--my-red);
+}
+
+/*#background {
+    position: fixed;
+    top: -40vh;
+    opacity: 0.5;
+    z-index: -10;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+#background h1 {
+    position: absolute;
+    z-index: -10;
+    font-family: 'Gloock', serif;
+    font-size: 20em;
+    height: 80vh;
+    width: 100vw;
+    text-aline: center;
+    color: #FFFFFF88;
+}
+*/
+
+#team-label-1, #team-label-2, #team-label-3, #team-label-4 {
+    font-family: 'Gloock', serif;
+    font-size: 1.4em;
+    width: 100vw;
+    margin: 0;
+    text-align: center;
+    color: #FFFFFF88;
+}
+
+body {
+    color: white;
+    font-family: 'Secular One', sans-serif;
+    font-size: 30px;
+    text-align: center;
+}
+
+label {
+    margin: 10px;
+}
+
+input {
+    font-size: 20px;
+    margin: 10px;
+    background-color: rgba(200, 200, 200, 0.5);
+    border-radius: 15px;
+    border: none;
+    width: 250px;
+    height: 30px;
+    text-align: center;
+}
+
+select, option, button, #Absent, #AbsentC {
+    font-size: 20px;
+    color: black;
+    margin: 10px;
+    background-color: rgba(200, 200, 200, 0.5);
+    border-radius: 15px;
+    border: none;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-family: Roboto, serif;
+    font-size: 20px;
+}
+
+select {
+    width: 60vw;
+}
+
+#Absent, #AbsentC {
+    width: 30px;
+    height: 30px;
+}
+
+button {
+    background-color: rgba(200, 200, 200, 1);
+}
+
+#dec, #inc {
+    width: 3.5vh;
+    height: 3.5vh;
+}
+
+#AutonomusAmp, #AutonomusSpeaker ,#TeleopAmp, #TeleopSpeaker,#Fouls{
+    width: 40%;
+    height: 3.5vh;
+    text-align: center;
+}
+
+#page2 select{
+    border-radius: 15px;
+}
+
+@media screen and (min-width: 0px) {
+
+}
+#image-container {
+    position: relative;
+}
+#image-container img {
+    max-width: 100%;
+}
+.point {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    opacity: 0.5;
+    cursor: pointer;
+}

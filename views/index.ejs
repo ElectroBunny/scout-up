@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Document</title>
+  </head>
+  <body id="body" class="red-style">
+    <form id="Scouting_Form" method="POST" action="/">
+      <h4 id="location-text"></h4>
+
+
+      <!-- PAGE 1 -->
+      <div id="page1">
+        <h1>General</h1>
+        <h3 id="team-label-1"></h3>
+        <br>
+        <label for="Team">Team Number:</label>
+        <br>
+        <input type="number" id="Team" name="Team" required>
+        <br>
+        <label for="Match">Qual Number:</label>
+        <br>
+        <input type="number" id="Input-match" name="Match" required>
+        <br>
+        
+
+        <label for="Robot_location">Team:</label>
+        <br>
+        <select name="Robot_location" id="Robot_location">
+          <option value="Red 1">Red 1</option>
+          <option value="Red 2">Red 2</option>
+          <option value="Red 3">Red 3</option>
+          <option value="Blue 1">Blue 1</option>
+          <option value="Blue 2">Blue 2</option>
+          <option value="Blue 3">Blue 3</option>
+        </select>
+        <br>
+        
+        <label for="ScouterName">Scouter's Name:</label>
+        <br>
+        <input type="text" id="ScouterName" name="ScouterName" required>
+        <br>
+
+        <label for="StrartingPos">Strarting Position:</label>
+        <br>
+        <select name="StrartingPos" id="StrartingPos">
+          <option value="Amp">Amp</option>
+          <option value="Speaker">Speaker</option>
+          <option value="Source">Source</option>
+        </select>
+        <br>
+        <br>
+
+        <label for="Absent">Team absent?</label>
+        <br>
+        <input type="checkbox" id="Absent" onchange="toggleSubmitButton()">
+        <input type="hidden" id="AbsentC" name="Absent" value="FALSE">
+        <br>
+        <br>
+
+        <button type="button" onclick="nextPage()">Next</button>
+        <button id="submit-button" style="display: none;">Submit</button>
+      </div>
+
+
+      <!-- PAGE 2 -->
+      <div id="page2" style="display:none;">
+
+        <h1>Autonomus</h1>
+        <h3 id="team-label-2"></h3>
+        <br>
+        
+        <label for="LeftWing">Left his Wing? (checked = Yes)</label>
+        <br>
+        <input type="checkbox" id="LeftWing">
+        <input type="hidden" id="LeftWingC" name="LeftWing" value="FALSE">
+        <br>
+        
+        <label for="autoCones">Amp Scores:</label>
+        <div>   
+          <button type="button" id="dec" onclick="decrement('AutonomusAmp')">-</button>
+          <input type="text" name="AutonomusAmp" id="AutonomusAmp" value="0" readonly>
+          <button type="button" id="inc" onclick="increment('AutonomusAmp')">+</button>
+        </div>
+
+
+        <label for="autoCubes">Speaker Scores:</label>
+        <div> 
+          <button type="button" id="dec" onclick="decrement('AutonomusSpeaker')">-</button>
+          <input type="text" name="AutonomusSpeaker" id="AutonomusSpeaker" value="0" readonly>
+          <button type="button" id="inc" onclick="increment('AutonomusSpeaker')">+</button>
+        </div>
+
+        <br>
+
+
+        <button type="button" onclick="prevPage()">Previous</button>
+        <button type="button" onclick="nextPage()">Next</button>
+      </div>
+      
+
+      <!-- PAGE 3 -->
+      <div id="page3" style="display:none;">
+        <h1>Teleop</h1>
+        <h3 id="team-label-3"></h3>
+        <br>
+        <label for="teleopCones">Amp Scores:</label>
+        <div> 
+          <button type="button" id="dec" onclick="decrement('TeleopAmp')">-</button>
+          <input type="text" name="TeleopAmp" id="TeleopAmp" value="0" readonly>
+          <button type="button" id="inc" onclick="increment('TeleopAmp')">+</button>
+        </div>
+
+        <label for="teleopCubes">Speaker Scores:</label>
+        <div> 
+          <button type="button" id="dec" onclick="decrement('TeleopSpeaker')">-</button>
+          <input type="text" name="TeleopSpeaker" id="TeleopSpeaker" value="0" readonly>
+          <button type="button" id="inc" onclick="increment('TeleopSpeaker')">+</button>
+        </div>
+
+        <label for="DroppedNotes">Dropped Notes? (>2)</label>
+        <input type="checkbox" id="DroppedNotes">
+        <input type="hidden" id="DroppedNotesC" name="DroppedNotes" value="FALSE">
+        <br>
+
+
+        <br>
+        <button type="button" onclick="prevPage()">Previous</button>
+        <button type="button" onclick="nextPage()">Next</button> 
+      </div>
+
+
+      <!-- PAGE 4 -->
+      <div id="page4" style="display:none;">
+        <h1>Endgame</h1>
+        <h3 id="team-label-4"></h3>
+        <br>
+        <label for="FinelStatus">Final Status:</label>
+        <br>
+        <select name="FinelStatus" id="FinelStatus">
+          <option value="Parked">Parked</option>
+          <option value="Onstage">Onstage</option>
+          <option value="Onstage (Spotlit)">Onstage (Spotlit)</option>
+          <option value="Harmony">Harmony</option>
+          <option value="Attempted but failed">Attempted but failed</option>
+          <option value="Not attempted">Not attempted</option>
+        </select>
+        <br>
+
+        <label for="DriverSkill">Driver Skill:</label>
+        <br>
+        <select name="DriverSkill" id="DriverSkill">
+          <option value="Not Effective">Not Effective</option>
+          <option value="Average">Average</option>
+          <option value="Very Effective">Very Effective</option>
+          <option value="Not Observed">Not Observed</option>
+        </select>
+        <br>
+
+        <label for="DefenseRating">Defense Rating:</label>
+        <br>
+        <select name="DefenseRating" id="DefenseRating">
+          <option value="Below Average">Below Average</option>
+          <option value="Average">Average</option>
+          <option value="Good">Good</option>
+          <option value="Excellent">Excellent</option>
+          <option value="Did not play defense">Did not play defense</option>
+        </select>
+        <br>
+
+        
+
+        <label for="Crashed">Crashed?</label>
+        <br>
+        <select name="Crashed" id="Crashed">
+          <option value="Didn't crashed">Didn't crashed</option>
+          <option value="Crashed and stopped">Crashed and stopped</option>
+          <option value="Crashed and continued">Crashed and continued</option>
+        </select>
+        <br>
+
+        
+
+
+
+        <label for="Comments">Comments:</label>
+        <br>
+        <input type="text" id="Comments" name="Comments">
+        <br>
+
+        <button type="button" onclick="prevPage()">Previous</button>
+        <button type="submit">Submit</button>
+      </div>
+      <!-- PAGE 5 -->
+      <div id="page5" style="display:none;">
+        <h1>QR</h1>
+        <div id="qrcode1"></div>
+        <div id="qrcode2"></div>
+        <!-- button to resart the form -->
+        <button type="button" onclick="restartForm()">Restart</button>
+      </div>
+
+      <label for="Fouls">Fouls:</label>
+        <br>
+        <button type="button" id="dec" onclick="decrement('Fouls')">-</button>
+        <input type="text" name="Fouls" id="Fouls" value="0" readonly>
+        <button type="button" id="inc" onclick="increment('Fouls')">+</button>
+        <br>
+    <div id="background"><h1 id="background-text"></h1></div>
+  </body>
+  <script src="./TBAInterface.js"></script>
+  <script src="./qrcode.min.js"></script>
+  <script src="./jquery.min.js"></script>
+  <script src="./myscripts.js"></script>
+  
+</html>

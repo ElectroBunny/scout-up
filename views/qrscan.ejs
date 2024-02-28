@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Scan</title>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Scan QR code</h1>
+        <br>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+        <title>QR Scan</title>
+        <style>
+                .button {
+                        padding: 10px 20px;
+                        font-size: 18px;
+                        background-color: #007bff;
+                        color: #fff;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                }
+        </style>
+</head>
+<body>
+        <br>
+        <div class="container">
+                <label for="server-ip">Server IP:</label>
+                <input type="text" id="server-ip" name="server-ip">
+                <button class="button" id="scan">Scan QR Code</button>
+
+                <div style="width: 500px" id="reader"></div>
+
+                <input type="text" id="text" placeholder="Enter text">
+
+                <button class="button" id="send">Send</button>
+                <button class="button" onclick="deleteText()">Delete</button>
+        </div>
+</body>
+<!-- import script from https://raw.githubusercontent.com/mebjas/html5-qrcode/master/minified/html5-qrcode.min.js -->
+<script src="./readqr.js"></script>
+<script>
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+                "reader", { fps: 10, qrbox: 250 });
+
+        function good_scan(qrCodeMessage) {
+                html5QrcodeScanner.clear();
+                //get the text in the "text" paragraph
+                var text = document.getElementById("text").textContent;
+                // append the the "text" paragraph and set the innerHTML to the decoded message
+                document.getElementById("text").innerHTML = text + qrCodeMessage;
+        }
+        function deleteText() {
+                document.getElementById("text").innerHTML = "";
+        }
+        function onScanSuccess(qrCodeMessage) {
+                // handle on success condition with the decoded message
+                console.log(`QR Code detected: ${qrCodeMessage}`);
+                let valuesArray = qrCodeMessage.split(',');
+                let jsonObj = {};
+
+                for (let i = 0; i < valuesArray.length; i++) {
+                    jsonObj[i + 1] = valuesArray[i];
+                }
+                // get the server ip from the input
+                let serverIp = document.getElementById("server-ip").value;
+                if (serverIp === "") {
+                    serverIp = "localhost";
+                } else if (serverIp === "/") {
+                    serverIp = "/";
+                } else {
+                    serverIp = `http://${serverIp}/`;
+                }
+
+                fetch(serverIp, {
+                  method: 'POST',
+                  body: JSON.stringify(jsonObj),
+                  headers: {
+                  'Content-Type': 'application/json'
+                  }
+                }).catch(function(error) {
+                console.error('Error:', error);
+                }); 
+        }
+
+        function onScanFailure(error) {
+                // handle on failure condition, with error
+                console.warn(`QR Code scan error: ${error}`);
+        }
+
+        //when the button is clicked, start scanning
+        document.getElementById("scan").addEventListener("click", function() {
+                html5QrcodeScanner.render(good_scan, onScanFailure);
+        });
+
+        document.getElementById("send").addEventListener("click", function() {
+                // get the text in the "text" paragraph
+                var text = document.getElementById("text").textContent;
+                onScanSuccess(text);
+        });
+</script>
+</html>
+
