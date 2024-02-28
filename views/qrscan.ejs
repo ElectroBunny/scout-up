@@ -36,7 +36,7 @@
 
                 <div style="width: 500px" id="reader"></div>
 
-                <input type="text" id="text" placeholder="Enter text">
+                <input type="text" id="text" placeholder="Enter text" style="font-size: 15px; height: 200px; width: 500px;">    
 
                 <button class="button" id="send">Send</button>
                 <button class="button" onclick="deleteText()">Delete</button>
@@ -100,7 +100,7 @@
 
         document.getElementById("send").addEventListener("click", function() {
                 // get the text in the "text" paragraph
-                var text = document.getElementById("text").textContent;
+                var text = document.getElementById("text").value;
                 onScanSuccess(text);
         });
 </script>
