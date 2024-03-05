@@ -67,8 +67,16 @@ document.querySelector('form').addEventListener('submit', function(event) {
     headers: {
       'Content-Type': 'application/json'
     }
+    // on success
+  }).then(function(response) {
+    console.log('Success:', response);
+    // set the mesage status label to "Form Submitted!"
+    document.getElementById("message-status").innerHTML = "Form Submitted!";
+    // on error
   }).catch(function(error) {
     console.error('Error:', error);
+    // set the mesage status label to "Error!"
+    document.getElementById("message-status").innerHTML = "Error!";
   }); 
   
   //log to console
@@ -99,6 +107,11 @@ document.querySelector('form').addEventListener('submit', function(event) {
   // split the qr into two qr codes
   QRCode1.makeCode(qrText.substring(0, qrText.length));
 
+
+
+});
+
+function restartFullForm(){
   // set all the forms filds to empty exsect the readonly ones, set them to 0
   var inputs = document.getElementById("Scouting_Form").getElementsByTagName("input");
   for (var j = 0; j < inputs.length; j++) {
@@ -114,12 +127,10 @@ document.querySelector('form').addEventListener('submit', function(event) {
       inputs[j].value = "";
     }
   }
-
+  document.getElementById("message-status").innerHTML = "not sended yet";
   toggleSubmitButton();
-
-
-});
-
+  restartForm();
+}
 
 
 var currentPage = 1;

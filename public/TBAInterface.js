@@ -1,6 +1,6 @@
 var teams = null;
 var schedule = null;
-var authKey = "TBA_KEY";
+var authKey = "XoBw5YTucHHH15qDgP9pHZkpobpC0Bs0Sb3jkXeSo5bfv0HIOyBzcvuHqcxmbhyk";
 
 function getTeams(eventCode) {
 	if (authKey) {
