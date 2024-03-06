@@ -136,6 +136,9 @@ function restartFullForm(){
   document.getElementById("message-status").innerHTML = "not sended yet";
   toggleSubmitButton();
   restartForm();
+  AbsentCheckHidden.value = AbsentCheck.checked ? 'TRUE' : 'FALSE';
+  LeftWingCheckHidden.value = LeftWingCheck.checked ? 'TRUE' : 'FALSE';
+  DroppedNotesCheckHidden.value = DroppedNotesCheck.checked ? 'TRUE' : 'FALSE';
 }
 
 
