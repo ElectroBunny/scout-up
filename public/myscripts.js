@@ -356,7 +356,7 @@ function getCurrentTeamNumberFromRobot() {
 
 function getCurrentMatchKey() {
   console.log("getCurrentMatchKey")
-  return "2024isde2" + "_" + "qm" + matchInput.value;
+  return "2024isde4" + "_" + "qm" + matchInput.value;
 }
 
 function getCurrentMatch() {
@@ -380,8 +380,8 @@ function getMatch(matchKey) {
 }
 
 window.onload = function () {
-  getTeams("2024isde2");
-  getSchedule("2024isde2");
+  getTeams("2024isde4");
+  getSchedule("2024isde4");
   AbsentCheckHidden.value = AbsentCheck.checked ? 'TRUE' : 'FALSE';
   LeftWingCheckHidden.value = LeftWingCheck.checked ? 'TRUE' : 'FALSE';
   DroppedNotesCheckHidden.value = DroppedNotesCheck.checked ? 'TRUE' : 'FALSE';
