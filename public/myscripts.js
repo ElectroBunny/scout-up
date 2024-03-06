@@ -4,6 +4,7 @@ const matchInput = document.querySelector("#Input-match");
 const locationInput = document.querySelector("#location");
 var QRCode1 = new QRCode(document.getElementById("qrcode1"), "");
 var QRCode2 = new QRCode(document.getElementById("qrcode2"), "");
+var submited_sucssas = false;
 
 
 Robotlocation.addEventListener('change', (event) => {setLocation(event.target.value);});
@@ -61,24 +62,27 @@ document.querySelector('form').addEventListener('submit', function(event) {
   // Send the request asynchronously
   // the body should be an json with key value pairs
   console.log(event.target.action);
-  fetch("/", {
-    method: 'POST',
-    body: JSON.stringify(formFields),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-    // on success
-  }).then(function(response) {
-    console.log('Success:', response);
-    // set the mesage status label to "Form Submitted!"
-    document.getElementById("message-status").innerHTML = "Form Submitted!";
-    // on error
-  }).catch(function(error) {
-    console.error('Error:', error);
-    // set the mesage status label to "Error!"
-    document.getElementById("message-status").innerHTML = "Error!";
-  }); 
-  
+  if (!submited_sucssas){
+    fetch("/", {
+      method: 'POST',
+      body: JSON.stringify(formFields),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+      // on success
+    }).then(function(response) {
+      console.log('Success:', response);
+      // set the mesage status label to "Form Submitted!"
+      document.getElementById("message-status").innerHTML = "Form Submitted!";
+      submited_sucssas = true;
+      // on error
+    }).catch(function(error) {
+      console.error('Error:', error);
+      // set the mesage status label to "Error!"
+      document.getElementById("message-status").innerHTML = "Error! - shoot barcode";
+    }); 
+  }
+  submited_sucssas = true;
   //log to console
   console.log("Form Submitted!");
 
@@ -112,6 +116,9 @@ document.querySelector('form').addEventListener('submit', function(event) {
 });
 
 function restartFullForm(){
+  if (submited_sucssas){
+    submited_sucssas = false;
+  }
   // set all the forms filds to empty exsect the readonly ones, set them to 0
   var inputs = document.getElementById("Scouting_Form").getElementsByTagName("input");
   for (var j = 0; j < inputs.length; j++) {
