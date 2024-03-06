@@ -116,9 +116,8 @@ document.querySelector('form').addEventListener('submit', function(event) {
 });
 
 function restartFullForm(){
-  if (submited_sucssas){
-    submited_sucssas = false;
-  }
+  submited_sucssas = false;
+
   // set all the forms filds to empty exsect the readonly ones, set them to 0
   var inputs = document.getElementById("Scouting_Form").getElementsByTagName("input");
   for (var j = 0; j < inputs.length; j++) {
